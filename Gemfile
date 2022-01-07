@@ -45,6 +45,8 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'launchy'
   gem 'simplecov', require: false, group: :test
+  gem 'rubocop', require: false
+  gem 'rubocop-rails' require: false 
 end
 
 group :development do
