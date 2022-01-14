@@ -1,6 +1,3 @@
-require 'rails_helper'
-require 'webmock'
-require 'httparty'
 RSpec.describe 'the merchants dashboard page' do
 
   let!(:merchant_1) {Merchant.create!(name: 'Billys Pet Rocks')}
