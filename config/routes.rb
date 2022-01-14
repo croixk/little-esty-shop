@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get '/merchants/:merchant_id/invoices/:id', to: 'merchant_invoices#show'
   patch '/merchants/:merchant_id/invoices/:invoice_id', to: 'merchant_invoices#update'
 
+  get '/merchants/:merchant_id/bulk_discounts', to: 'bulk_discounts#index'
+
+
   get '/merchants/:merchant_id/items/new', to: 'merchant_items#new'
   get '/merchants/:merchant_id/items/:item_id', to: 'merchant_items#show'
   get '/merchants/:merchant_id/items/:item_id/edit', to: 'merchant_items#edit'
@@ -27,5 +30,6 @@ Rails.application.routes.draw do
   get '/admin/merchants/:id/edit', to: 'admin/admin_merchants#edit'
   patch '/admin/merchants/:id', to: 'admin/admin_merchants#update'
   post '/admin/merchants', to: 'admin/admin_merchants#create'
+
 
 end

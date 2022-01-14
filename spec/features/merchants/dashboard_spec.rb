@@ -1,6 +1,14 @@
 RSpec.describe 'the merchants dashboard page' do
 
   let!(:merchant_1) {Merchant.create!(name: 'Billys Pet Rocks')}
+  let!(:merchant_2) {Merchant.create!(name: 'Nicks Slick Pics')}
+
+
+  let!(:discount_1) {merchant_1.bulk_discounts.create!(percent_off: 50, quantity_threshold: 10)}
+  let!(:discount_2) {merchant_1.bulk_discounts.create!(percent_off: 25, quantity_threshold: 20)}
+  let!(:discount_3) {merchant_1.bulk_discounts.create!(percent_off: 15, quantity_threshold: 10)}
+  let!(:discount_4) {merchant_2.bulk_discounts.create!(percent_off: 75, quantity_threshold: 60)}
+
 
   let!(:item_1) {merchant_1.items.create!(name: 'Obsidian Nobice', description: 'A beautiful obsidian', unit_price: 50)}
   let!(:item_2) {merchant_1.items.create!(name: 'Pleasure Geode', description: 'Glamourous Geode', unit_price: 100)}
@@ -107,9 +115,21 @@ RSpec.describe 'the merchants dashboard page' do
     expect(item_3.name).to appear_before(item_2.name)
   end
 
+  it "displays a link to view all bulk discounts" do
+    visit "/merchants/#{merchant_1.id}/dashboard"
+    click_link("My Bulk Discounts")
+    expect(current_path).to eq("/merchants/#{merchant_1.id}/bulk_discounts")
+    expect(page).to have_content(discount_1.quantity_threshold)
+    expect(page).to have_content(discount_1.percent_off)
+    expect(page).to have_content(discount_2.quantity_threshold)
+    expect(page).to have_content(discount_2.percent_off)
+    expect(page).to have_content(discount_3.quantity_threshold)
+    expect(page).to have_content(discount_3.percent_off)
 
-
+    expect(page).to_not have_content(discount_4.quantity_threshold)
+    expect(page).to_not have_content(discount_4.percent_off)
   end
+end
 
 
    # the body of the test would go here...
