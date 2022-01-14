@@ -70,9 +70,7 @@ RSpec.describe 'the merchants dashboard page' do
   it "links to the merchant invoices index" do
     visit "/merchants/#{merchant_1.id}/dashboard"
     expect(page).to have_link('My Invoices')
-    # click_link 'My Invoices'
-    # expect(current_path).to eq("/merchants/#{merchant_1.id}/invoices")
-    # need to build this later, for merchant invoices index
+
   end
 
   it "shows the names of top 5 customers" do
