@@ -105,22 +105,7 @@ RSpec.describe 'Admin dashboard page' do
       .to appear_before("Name: #{customer_3.first_name}, Succesful Transactions: #{customer_3.transactions.length}")
     end
   end
-
-  it 'shows github info on current page' do
-    visit "/admin"
-    github_service = GithubService.new
-
-    expect(page).to have_content(github_service.repo_name)
-    expect(page).to have_content("BrianZanti: 51\ndylan-harper: 49\nHenchworm: 42\ncroixk: 22\njacksonvaldez: 10\ntimomitchel: 9\nscottalexandra: 3\njamisonordway: 1\nMerged commits count: 82")
-    expect(page).to have_content(github_service.all_merged)
-  end
-
 end
 
 
 
-
-# Then I see a section for "Incomplete Invoices"
-# In that section I see a list of the ids of all invoices
-# That have items that have not yet been shipped
-# And each invoice id links to that invoice's admin show page
