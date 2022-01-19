@@ -19,6 +19,13 @@ class InvoiceItem < ApplicationRecord
     end
 
     return_discount
+
+    # Discount.joins(merchant: {items: :invoice_items})
+    # .where(invoice_items: {item_id: item.id})
+    # .where('invoice_items.quantity > min_quantity')
+    # .order(:min_quantity)
+    # .first
+
   end
 
 end
